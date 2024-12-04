@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <link rel="stylesheet" href="css/dashboard/adminDashboard.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div id="search-results" style="display: none;">
+        Nenhum dado encontrado
+    </div>
+    <nav class="topnav">
+        <div class="logo">
+            <a href="#" class="display-sm display-md" id="menu"><i class="fa fa-list-ul"></i></a>
+            <a href="index.html" class="hidden-sm"><h1>Dashboard</h1></a>
+        </div>
+        <div class="user-menu">
+            <form action="#" method="post" class="hidden-sm">
+                <input type="text" name="search" id="search" placeholder="Procurar...">
+                <i class="fa fa-search"></i>
+            </form>
+            <div>
+                <a href="#" id="personne"><i class="fa fa-user"></i> </a>
+                <a href="/deconnexion"><i class="fa fa-power-off"></i></a>
+            </div>
+        </div>
+    </nav>
+   
+   <aside class="sidenav hidden-sm hidden-md" id="nav">
+       <div class="list">
+           <a href="/" class="active"><i class="fa fa-home"></i> Accueil</a>
+           <a href="#"><i class="fa fa-bell"></i> Message</a>
+           <a href="#"><i class="fa fa-edit"></i> Transport</a>
+           <a href="#"><i class="fa fa-users"></i> User</a>
+           <a href="#"><i class="fa fa-wrench"></i> Manage</a>
+           <a href="#"><i class="fa fa-list"></i> Graphics</a>
+           <a href="#"><i class="fa fa-cogs"></i> Settings</a>
+       </div>
+   </aside>
+
+   <main class="content">
+      <div class="grid">
+          <div class="mini-reports bg-blue">
+                <div class="l">
+                    <span>10</span>
+                    <span>Some text</span>
+                </div>
+                <div class="r">
+                    <i class="fa fa-book c-blue"></i>
+                </div>
+          </div>
+          <div class="mini-reports bg-green">
+                <div class="l">
+                    <span>1</span>
+                    <span>Home</span>
+                </div>
+                <div class="r">
+                    <i class="fa fa-home c-green"></i>
+                </div>
+          </div>
+          <div class="mini-reports bg-orange">
+                <div class="l">
+                    <span>100</span>
+                    <span>usuário</span>
+                </div>
+                <div class="r">
+                    <i class="fa fa-users c-orange"></i>
+                </div>
+          </div>
+          <div class="mini-reports bg-red">
+                <div class="l">
+                    <span>50</span>
+                    <span>Online</span>
+                </div>
+                <div class="r">
+                    <i class="fa fa-user c-red"></i>
+                </div>
+          </div>
+      </div>
+
+      <div class="grid">
+          <div class="painel">
+              <div class="painel-header">
+                  <h4 class="painel-title">Table</h4>
+                  <a href="#" class="btn btn-green">table</a>
+              </div>
+              <div class="painel-body">
+                  <div class="alert alert-success">Erro ao adicionar usuário</div>
+                  <table class="zebra" id="table">
+                    <!-- Les information du colis -->
+                    </table>
+              </div>
+          </div>
+
+          
+      </div>
+
+      
+   </main>
+   <script src="js/dashboard/adminDashboard.js" >
+        
+   </script>
+</body>
+</html>

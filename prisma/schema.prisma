@@ -1,0 +1,107 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Utilisateur {
+  id                         Int       @id @default(autoincrement())
+  email                      String?    @unique
+  emailDestinateur           String?    
+  roles                      Roles?    @default(user)
+  password                   String?
+  firstname                  String
+  lastname                   String
+  paysId                     Int      // pas obligatoire pour ma première connexion après je lui rends obligatoire en js
+  pays                       Pays @relation("PaysUtilisateur", fields: [paysId], references: [id])
+  phone                      String
+  anneeNaissance             DateTime?
+  profession                 String?
+  profil                     String?
+  is_verified                Boolean   @default(false)
+  destinateurColis           Colis[]   @relation("DestinateurColis")
+  transporteurColis          Colis[]   @relation("TransporteurColis")//contient tous les colis que le transporteur doit envoyer
+  expediteurColis            Colis[]    @relation("ExpediteurColis") // Relation one-to-one avec Colis
+  transport                  Transport[] @relation("Chemin") // Transport utilisé par l'utilisateur
+}
+
+
+enum Roles {
+  admin
+  user
+  transporteur
+}
+
+model Pays {
+  id                    Int       @id @default(autoincrement())
+  nom                   String
+  codeCountry           String
+  monnaie               String
+  transporteursDepart         Transport[]   @relation("PaysTransporteurDepart")
+  // PaysTransporteurArrivee         Transport[]   @relation("PaysTransporteurArrivee")
+  utilisateurs          Utilisateur[]   @relation("PaysUtilisateur")
+  colis                 Colis[]   @relation("PaysColis")   // Relation avec Colis
+  villes                Ville[]   @relation("PaysVille")   // Relation avec Ville
+}
+
+model Colis {
+  id                        Int       @id @default(autoincrement())
+  numeroColis               String    @unique
+  poids                     Float
+  dateDepart                DateTime
+  villeDepart               String
+  ville                     String // ville de livraison
+  modeTransport             String
+  destinateurId             Int? 
+  transporteurId            Int
+  expediteurId              Int  //@unique // Définition de l'unicité pour la relation one-to-one
+  paysId                    Int
+  localisation              Roles1 @default(en_attente)
+  destinateur               Utilisateur? @relation("DestinateurColis", fields: [destinateurId], references: [id])//contiendra le pays de destination
+  transporteur              Utilisateur @relation("TransporteurColis", fields: [transporteurId], references: [id])
+  expediteur                Utilisateur @relation("ExpediteurColis", fields: [expediteurId], references: [id])
+  pays                      Pays @relation("PaysColis", fields: [paysId], references: [id]) //pays de depart
+}
+
+enum Roles1 {
+  en_cours
+  livre
+  en_attente
+}
+
+model ModeLivraison {
+  id                        Int       @id @default(autoincrement())
+  libelle                   String    // On précise si c'est en bateau ou aérienne
+  description               String    // On écrit le nombre de jours
+  transporteurs             Transport[] @relation("ModeLivraison")
+}
+
+model Transport {
+  id                        Int       @id @default(autoincrement())
+  prix                      Float
+  utilisateurId             Int
+  //paysDepartId              Int
+  //paysArriveId              Int
+  modeLivraisonId           Int
+  modeLivraison             ModeLivraison @relation("ModeLivraison", fields: [modeLivraisonId], references:[id])
+  chemin                    Utilisateur @relation("Chemin", fields: [utilisateurId], references: [id]) // le Id de l'utilisateur sera renseigné automatiquement
+  // paysDepart                      Pays @relation("PaysTransporteurDepart", fields: [paysDepartId], references: [id]) // Doit choisir obligatoirement un pays
+  // paysArrive                      Pays @relation("PaysTransporteurArrivee", fields: [paysArriveId], references: [id]) // Doit choisir obligatoirement un pays d'arrivee
+  villeDepart               String?
+  villeArrive               String?
+  dateDepart                DateTime?
+  dateArrive                DateTime?
+  paysDepartId              Int
+  paysDepart                Pays @relation("PaysTransporteurDepart", fields: [paysDepartId], references: [id]) //Sera renseigné automatiquement par le serveur des qu'on a choisi la ville de depart.
+}
+
+model Ville {
+  id                        Int       @id @default(autoincrement())
+  nom                       String
+  paysId                    Int
+  pays                      Pays @relation("PaysVille", fields: [paysId], references: [id])  // Relation correcte
+  
+}

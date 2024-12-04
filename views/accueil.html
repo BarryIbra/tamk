@@ -1,0 +1,321 @@
+<html>
+
+<head>
+    <title>Colis TransAir</title>
+    <link rel="stylesheet" href="/css/accueil.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+       <style>
+        
+        .date-input-container {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+}
+
+.date-input {
+    width: 100%;
+    padding: 12px 15px;
+    padding-left: 40px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 15px;
+    color: #0A3254;
+    background-color: white;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease;
+    padding-bottom: 170px;
+}
+
+.date-input:focus {
+    border-color: #0066ff;
+    box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+}
+
+.calendar-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+    color: #0A3254;
+}
+
+.date-input::placeholder {
+    color: #0A3254;
+}
+
+        </style>
+</head>
+
+<body>
+    <div class="entete">
+        <nav>
+            <div class="nav__header">
+                <div class="nav__logo">
+                    <a href="/">
+                        <img src="/img/logo.png" alt="logo" class="logo-dark" />
+                    </a>
+                </div>
+                <div class="nav__menu__btn" id="menu-btn">
+                    <i class="ri-menu-line"></i>
+                </div>
+            </div>
+            <ul class="nav__links" id="nav-links">
+                <li><a href="/">Accueil</a></li>
+                <li><a href="#enregistreColis">Colis</a></li>
+                <li><a href="#faq">Faq</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <!-- Je souhaite ajouter font awsome de personne me permettant de me connecter -->
+                 <li>
+                    <a href="/connexion" id="personne"><i class="fa fa-user"></i></a>
+                 </li>
+            </ul>
+        </nav>
+        <header class="header" id="home">
+            <div class="section__container header__container">
+                <h2>Expedition de colis</h2>
+                <h1>Vous souhaitez envoyez un colis?</h1>
+                <p>Bienvenue sur notre site web</p>
+            </div>
+        </header>
+
+        <div class="header__image">
+            <img src="/img/header.png" alt="header" />
+        </div>
+
+    </div>
+
+    <!-- Colis -->
+    <div class="enregistreColis" id="enregistreColis">
+
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-11 col-sm-10 col-md-10 col-lg-6 col-xl-5 text-center p-0 mt-3 mb-2">
+                    <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+                        <h2 id="heading">Envoi du colis</h2>
+                        <p>Les étapes </p>
+                        <form id="msform" method="get">
+                            <!-- progressbar -->
+                            <ul id="progressbar">
+                                <li class="active" id="account"><strong>Colis</strong></li>
+                                <li id="personal"><strong>Personne</strong></li>
+                                <li id="payment"><strong>Verification</strong></li>
+                                <li id="confirm"><strong>Finish</strong></li>
+                            </ul>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                                    aria-valuemin="0" aria-valuemax="100"></div>
+                            </div> <br> <!-- fieldsets -->
+
+                            <fieldset>
+                                <div class="form-card">
+                                    <div class="row">
+                                        <div class="col-7">
+                                            <h2 class="fs-title">Les informations du colis</h2>
+                                        </div>
+
+                                        <div class="col-5">
+                                            <h2 class="steps">Step 1 - 4</h2>
+                                        </div>
+                                    </div>
+
+                                    <!-- blablacar copie -->
+                                    <div class="search-bar">
+                                        <div class="search-field">
+                                            <i class="icon fas fa-map-marker-alt"></i>
+                                            <input type="text" placeholder="Départ" id="msform1" name="villeDepart"
+                                                required />
+                                        </div>
+
+                                        <div class="search-field">
+                                            <i class="icon fas fa-map-marker-alt"></i>
+                                            <input type="text" placeholder="Destination" id="msform1"
+                                                name="villeDetination" required />
+                                        </div>
+
+                                        <!--
+                                         <div class="search-field">
+                                            <i class="icon fas fa-calendar-alt"></i>
+                                            <select name="jours" required>
+                                                <option value="Lundi">Lundi</option>
+                                                <option value="Mardi">Mardi</option>
+                                                <option value="Mercredi">Mercredi</option>
+                                                <option value="Jeudi">Jeudi</option>
+                                                <option value="Vendredi">Vendredi</option>
+                                                <option value="Samedi">Samedi</option>
+                                                <option value="Dimanche">Dimanche</option>
+                                            </select>
+                                        </div> 
+                                        -->
+                                        <div class="date-input-container search-field">
+                                            <i class="icon fas fa-calendar-alt"></i>
+                                            <input 
+                                                type="text" 
+                                                name="dateDepart"
+                                                required
+                                                class="date-input date-input-depart"
+                                                id="customDatePicker" 
+                                                placeholder="Sélectionnez une date" 
+                                                readonly
+                                            >
+                                            
+                                        </div>
+                                        
+                                          
+
+                                        <div class="search-field">
+                                            <i class="icon fas fa-road"></i>
+                                            <!-- <input type="text" placeholder="Type de voie" /> -->
+                                            <select id="voieSelect" name="voie" required></select>
+                                        </div>
+
+                                        <div class="search-field">
+                                            <i class="icon fas fa-weight-hanging"></i>
+                                            <!-- <input type="text" placeholder="Poids" /> -->
+                                            <input type="number" name="poids" placeholder="Poids du colis" required
+                                                id="msform1" />
+
+                                        </div>
+
+                                        <button class="search-button">Rechercher</button>
+                                    </div>
+
+                                    <!-- Le resultat des recherche -->
+                                    <div id="recherche">
+
+                                    </div>
+
+                                    <!-- Bouton pour passer à l'étape suivante -->
+                                    <input type="button" name="next" class="next action-button" value="Suivante" />
+                            </fieldset>
+                            <fieldset>
+                                <div class="form-card">
+                                    <div class="row">
+                                        <div class="col-7">
+                                            <h2 class="fs-title">Les informations sur le destinateur</h2>
+                                        </div>
+                                        <div class="col-5">
+                                            <h2 class="steps">Step 2 - 4</h2>
+                                        </div>
+                                    </div>
+                                    <label class="fieldlabels">Prenom *</label>
+                                    <input type="text" name="firstname" placeholder="Son prenom" class="firstname"
+                                        required />
+                                    <label class="fieldlabels">Nom *</label>
+                                    <input type="text" name="lastname" class="lastname" placeholder="Son nom"
+                                        required />
+                                    <label class="fieldlabels">Numero de telephone *</label>
+                                    <input type="text" name="phone" class="phone" placeholder="Son numero de telephone"
+                                        required />
+                                    <label class="fieldlabels">Son email *</label>
+                                    <input type="email" name="emailDestinateur" class="emailDestinateur"
+                                        placeholder="Son adresse mail" required />
+                                </div>
+                                <input type="button" name="next" class="next action-button" value="Suivante" />
+                                <input type="button" name="previous" class="previous action-button-previous"
+                                    value="Precedente" />
+                            </fieldset>
+                            <fieldset>
+                                <div class="form-card">
+                                    <h2 class="fs-title">Récapitulatif des informations</h2>
+
+                                    <!-- Conteneur du récapitulatif -->
+                                    <div id="recapContainer">
+                                        <h4>Informations du colis :</h4>
+                                        <p><strong>Poids :</strong> <span id="recapPoids"></span></p>
+                                        <p><strong>Ville de départ :</strong> <span id="recapVilleDepart"></span></p>
+                                        <p><strong>Ville d'arrivée :</strong> <span id="recapVilleArrivee"></span></p>
+                                        <p><strong>Type de voie :</strong> <span id="recapVoie"></span></p>
+                                        <p><strong>Transporteur :</strong> <span id="recapTransporteur"></span></p>
+
+                                        <h4>Informations sur le destinataire :</h4>
+                                        <p><strong>Prénom :</strong> <span id="recapFirstname"></span></p>
+                                        <p><strong>Nom :</strong> <span id="recapLastname"></span></p>
+                                        <p><strong>Numéro de téléphone :</strong> <span id="recapPhone"></span></p>
+                                        <p><strong>Email :</strong> <span id="recapEmail"></span></p>
+                                    </div>
+                                </div>
+                                <button type="submit" class="next action-button">Soumettre</button>
+                                <input type="button" name="previous" class="previous action-button-previous"
+                                    value="Précédente" />
+                            </fieldset>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- En bas -->
+
+    <div class="enBas">
+        <section class="download" id="faq">
+            <div class="section__container download__container">
+                <h2 class="section__header">Download the app now</h2>
+                <p>
+                    Available on your favourite store. Stare your premium experience now
+                </p>
+                <div class="download__btns">
+                    <button class="btn btn__primary">Play Store</button>
+                    <button class="btn btn__secondary">App Store</button>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer" id="contact">
+            <div class="section__container footer__container">
+                <div class="footer__logo">
+                    <a href="#"><img src="img/logo.png" alt="logo" /></a>
+                </div>
+                <div class="footer__socials">
+                    <a href="#"><i class="ri-facebook-box-fill"></i></a>
+                    <a href="#"><i class="ri-twitter-fill"></i></a>
+                    <a href="#"><i class="ri-instagram-fill"></i></a>
+                </div>
+            </div>
+            <div class="footer__bar">
+                Copyright © 2024 Web Design Mastery. All rights reserved.
+            </div>
+        </footer>
+
+    </div>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script src="/js/accueil.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js"></script><!-- Importer la localisation française -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const today = new Date().toISOString().split('T')[0];
+            
+            //console.log(today);
+            
+            // Utiliser Flatpickr pour un calendrier personnalisé
+            flatpickr("#customDatePicker", {
+            dateFormat: "Y-m-d", // Format interne (standard ISO)
+            altInput: true,
+            altFormat: "D. d M Y", // Format affiché à l'utilisateur
+            minDate: new Date().toISOString().split('T')[0], // Date minimale au format ISO
+            locale: "fr", // Activer la localisation française
+            allowInput: false,
+            onChange: function (selectedDates, dateStr, instance) {
+                console.log("Date sélectionnée :", dateStr); // Vérifier la date au format Y-m-d
+            },
+            });
+
+        });
+
+    </script>
+
+</body>
+
+</html>
